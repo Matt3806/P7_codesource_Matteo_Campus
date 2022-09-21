@@ -31,8 +31,7 @@ function Like(props) {
     <div className='containerHome__card__likeSystem'>
     <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={isliked} onChange={likeDislike}/>   
     <p>{props.props.users.length}</p>
-  </div>
-    
+  </div>    
   )
 }
 

@@ -60,7 +60,7 @@ function Home() {
               </CardActionArea>
               <CardActions sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                 <Like props={item} fetch={ () => fetchPosts()}  config ={config}/>
-                <Modify props={item}/>
+                <Modify props={item} fetch={ () => fetchPosts()}  config ={config}/>
               </CardActions>
             </Card>
         ))}
