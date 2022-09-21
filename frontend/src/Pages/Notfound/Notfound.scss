@@ -1,0 +1,30 @@
+@import'../../Sass/Keyframes/Rebound.scss';
+.containerNotfound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: grey;
+    color: white;
+    h1{
+        font-size: 70px;
+    }
+    &__title{
+        overflow: hidden;
+    }
+    &__404{
+        &--1{
+            position: relative;
+            animation: rebound 1s ease-in infinite;
+        }
+        &--2{
+            position: relative;
+            animation: rebound 1s ease-in-out infinite ;
+        }
+        &--3{
+            position: relative;
+            animation: rebound 1s ease-out infinite ;
+        }
+    }
+}

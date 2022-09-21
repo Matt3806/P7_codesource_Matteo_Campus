@@ -35,7 +35,7 @@ function App() {
                 <Createpost/>
               </RequireAuth>
             }/>
-            <Route path="/porfil" element={
+            <Route path="/profil" element={
               <RequireAuth loginPath={'/login'}>
                 <Navbar/> 
                 <Profile/>
