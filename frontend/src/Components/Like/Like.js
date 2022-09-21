@@ -15,14 +15,14 @@ function Like(props) {
 
   const likeDislike = (e) =>{
     if (e.target.checked){
-      setisliked(true)
+      setisliked(!liked)
       axios.post(baseUrl,{},props.config)
-        .then((res) => {console.log(res)})
+        .then((res) => {props.fetch() })
         .catch((err)=>{console.log(err)})
     } else {
-      setisliked(false)
-      axios.delete(baseUrl,{},props.config)
-        .then((res) => {console.log(res)})
+      setisliked(!liked)
+      axios.delete(baseUrl,props.config)
+        .then((res) => {props.fetch() })
         .catch((err)=>{console.log(err)})
     }
   }
