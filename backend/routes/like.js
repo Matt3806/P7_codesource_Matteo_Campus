@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-//constante
+//constantes
 
 const likeCtrl = require('../controllers/likeCtrl')
 const auth = require('../middleware/auth')

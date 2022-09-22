@@ -1,5 +1,5 @@
 
-//constante
+//constantes
 const models = require('../models')
 const fs = require('fs')
 
@@ -88,7 +88,7 @@ exports.updatePost = (req, res)=>{
                 post.update({
                     ...body
                 },fieldsAllowed)
-                .then(() => res.status(201).json({ msg: 'user updated' }))
+                .then(() => res.status(201).json({ msg: 'post updated' }))
                 .catch(error => res.status(400).json({ error }))
             })
         }

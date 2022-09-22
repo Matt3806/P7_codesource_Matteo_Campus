@@ -1,7 +1,14 @@
-import { Box, Button, Input, Modal, TextField, Typography} from '@mui/material'
-import axios from 'axios';
+//imports internes
+import './Modify.scss'
 import React, { useState } from 'react'
+//imports externes
+import axios from 'axios';
 import {useAuthUser} from 'react-auth-kit'
+//imports mui
+import { Box, Button, Input, Modal, TextField, Typography} from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const style = {
   position: 'absolute',
@@ -18,45 +25,51 @@ const style = {
 };
 
 function Modify( props) {
-    const baseUrl = `http://localhost:8080/api/post/${props.props.id}`
-    const authUser = useAuthUser()
-    const [open, setOpen] = useState(false);
-    const [title, settitle] = useState(props.props.title)
-    const [content, setcontent] = useState(props.props.content)
-    const [picture, setpicture] = useState(null)
+  //constantes
+  const baseUrl = `http://localhost:8080/api/post/${props.props.id}`
+  const authUser = useAuthUser()
 
+  //states
+  const [open, setOpen] = useState(false);
+  const [title, settitle] = useState(props.props.title)
+  const [content, setcontent] = useState(props.props.content)
+  const [picture, setpicture] = useState(null)
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const modifypost = (item) =>{
-        if(authUser().admin || authUser().id === item.userId){
-          return(
-          <div className='containerHome__card__modify'>
-          <Button size="small" color="primary" onClick={handleOpen}>
-            Modifier
-          </Button>
-          </div>)
-        }
+  //fonctions
+  const handleOpen = () => setOpen(true); //ouvre la modal
+  const handleClose = () => setOpen(false); //ferme la modal
+
+  //affiche le bouton pour trigger la modal si admin ou user ayabt créé le post
+  const modifypost = (item) =>{
+      if(authUser().admin || authUser().id === item.userId){
+        return(
+        <div className='containerHome__card__modify'>
+        <Button size="small" color="primary" onClick={handleOpen} sx={{ display:'flex', justifyContent:'space-around',alignItems:'center'}}>
+          Modifier <EditIcon sx={{margin:'0 5px 0 5px'}} />
+        </Button>
+        </div>)
       }
-    
- 
-    const updatePost = (e) => {
-      e.preventDefault()
-      const obj = {
-        title : title,
-        content : content,
-        image: picture
-      }
-      axios.put(baseUrl,obj,props.config)
-      .then((res) => {props.fetch() ; handleClose()})
-      .catch((err)=>{console.log(err)})
     }
+  
+  //met à jour le post avec les éléments renseignés dans les inputs
+  const updatePost = (e) => {
+    e.preventDefault()
+    const obj = {
+      title : title,
+      content : content,
+      image: picture  
+    }
+    axios.put(baseUrl,obj,props.config)
+    .then((res) => {props.fetch() ; handleClose()})
+    .catch((err)=>{console.log(err)})
+  }
 
-    const deletePost = () => {
-      axios.delete(baseUrl,props.config)
-      .then((res) => {props.fetch() ; handleClose()})
-      .catch((err)=>{console.log(err)})
-    }
+  //supprime le post
+  const deletePost = () => {
+    axios.delete(baseUrl,props.config)
+    .then((res) => {props.fetch() ; handleClose()})
+    .catch((err)=>{console.log(err)})
+  }
 
   return (
     <>
@@ -72,10 +85,11 @@ function Modify( props) {
             image:
           </Typography>
           <Input type="file"
-            label="image" 
+            label="image"
             sx={{margin:'25px'}} 
             single='true' 
             accept="image/*"
+            filename='image'
             onChange={e => {setpicture(e.target.files[0]) }}
           />
           <TextField
@@ -96,11 +110,11 @@ function Modify( props) {
             value={content}
             onChange={e =>{setcontent(e.target.value)}}
           />
-          <Button size="small" color="primary" type='submit'>
-            Modifier
+          <Button size="small" color="primary" type='submit'sx={{ display:'flex', justifyContent:'center',alignItems:'center'}}>
+            Modifier <EditIcon sx={{margin:'0 5px 0 5px'}} />
           </Button>
-          <Button size="small" color="error" sx={{margin:'25px'}} onClick={deletePost}>
-            Supprimer
+          <Button size="small" color="error" sx={{margin:'25px', display:'flex', justifyContent:'center',alignItems:'center'}} onClick={deletePost}>
+            Supprimer  <DeleteIcon sx={{margin:'0 5px 0 5px'}}/>
           </Button>
         </Box>
       </Modal>      

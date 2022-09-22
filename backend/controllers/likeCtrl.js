@@ -1,5 +1,5 @@
 
-//constante
+//constantes
 const models = require('../models')
 
 //ajout d'un like à un post

@@ -1,5 +1,5 @@
 
-//constante
+//constantes
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const jwtSIgnSecret = process.env.jwtSIgnSecret 
@@ -51,21 +51,32 @@ exports.logUser = (req, res)=>{
         .catch(error => res.status(500).json({ error }))
 }
 
-// recupération du profil par l'utilisateur connecté ou admin 
+// recupération du profil ciblé
 exports.getUser = (req, res)=>{
     console.log('getUser')
 
-    const userId = req.auth.userId
-    const isadmin = req.auth.isadmin
     const id = parseInt(req.params.id)
 
     const userFound = models.user.findByPk(id,{ 
-        attributes: ['username', 'bio', 'picture', 'isadmin', 'email', 'createdAt', 'updatedAt'] 
+        attributes: ['id','username', 'bio', 'picture', 'createdAt', 'updatedAt'] 
     })
     .then((user)=>{
         if (!user) return res.status(404).json({ msg: 'not found' })
-        if(isadmin === true || userId === id) return res.status(200).json(user)
-        res.status(401).json({msg:'not allowed'})    
+         res.status(200).json(user)    
+    })
+    .catch(error => res.status(404).json({ error }))
+}
+
+//récupération de tous les profils
+exports.getAllUser = (req, res) => {
+    console.log('getAllUser')
+
+    const userFound = models.user.findAll({ 
+        attributes: ['id','username', 'bio', 'picture', 'createdAt', 'updatedAt'] 
+    })
+    .then((user)=>{
+        if (!user) return res.status(404).json({ msg: 'not found' })
+         res.status(200).json(user)    
     })
     .catch(error => res.status(404).json({ error }))
 }

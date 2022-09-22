@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-//constante
+//constantes
 
 const userCtrl = require('../controllers/userCtrl')
 const auth = require('../middleware/auth')
@@ -12,8 +12,9 @@ const passwordValidator = require('../middleware/password-validator')
 router.post('/signup', multer, passwordValidator, userCtrl.createUser)
 
 //read
-router.post('/login', multer,  userCtrl.logUser)
-router.get('/:id', auth, multer,  userCtrl.getUser)
+router.post('/login', multer, userCtrl.logUser)
+router.get('/:id', auth, multer, userCtrl.getUser)
+router.get('/', auth, multer, userCtrl.getAllUser)
 
 //update
 router.put('/:id', auth,  multer, userCtrl.updateUser)

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-//constante
+//constantes
 
 const postCtrl = require('../controllers/postCtrl')
 const auth = require('../middleware/auth')
