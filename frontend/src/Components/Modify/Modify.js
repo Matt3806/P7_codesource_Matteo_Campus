@@ -23,10 +23,11 @@ function Modify( props) {
     const [open, setOpen] = useState(false);
     const [title, settitle] = useState(props.props.title)
     const [content, setcontent] = useState(props.props.content)
+    const [picture, setpicture] = useState(null)
+
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    console.log(props.props.picture)
     const modifypost = (item) =>{
         if(authUser().admin || authUser().id === item.userId){
           return(
@@ -38,11 +39,13 @@ function Modify( props) {
         }
       }
     
+ 
     const updatePost = (e) => {
       e.preventDefault()
       const obj = {
         title : title,
         content : content,
+        image: picture
       }
       axios.put(baseUrl,obj,props.config)
       .then((res) => {props.fetch() ; handleClose()})
@@ -64,19 +67,35 @@ function Modify( props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box component ='form' sx={style} onSubmit={updatePost} encType='multipart/form-data'>
-          <Typography  sx={{alignSelf:'center', fontSize:'20px'}}>image:</Typography>
-          <Box component='div' sx={{border:'solid red', alignSelf:'center'}}>
-            <Box
-              component="img"
-              height="25%"
-              image={props.props.picture}
-              alt="" sx={{objectFit:'cover' , maxHeight:'150px', maxWidth:'150px'}}>
-            </Box>
-          </Box>
-          <Input type="file" label="image" sx={{margin:'25px'}} name ="image"/>
-          <TextField id="outlined-basic" label="titre" variant="outlined" sx={{margin:'25px'}} value={title} onChange={e =>{settitle(e.target.value)}}/>
-          <TextField id="outlined-basic" label="contenu" variant="outlined" sx={{margin:'25px'}} multiline rows={4} value={content} onChange={e =>{setcontent(e.target.value)}}/>
+        <Box component ='form' sx={style} onSubmit={updatePost} encType='multipart/form-data' id="form" name="form">
+          <Typography  sx={{alignSelf:'center', fontSize:'20px'}}>
+            image:
+          </Typography>
+          <Input type="file"
+            label="image" 
+            sx={{margin:'25px'}} 
+            single='true' 
+            accept="image/*"
+            onChange={e => {setpicture(e.target.files[0]) }}
+          />
+          <TextField
+            id="outlined-basic"
+            label="titre"
+            variant="outlined"
+            sx={{margin:'25px'}}
+            value={title}
+            onChange={e =>{settitle(e.target.value)}}
+          />
+          <TextField
+            id="outlined-basic"
+            label="contenu"
+            variant="outlined"
+            sx={{margin:'25px'}}
+            multiline
+            rows={4} 
+            value={content}
+            onChange={e =>{setcontent(e.target.value)}}
+          />
           <Button size="small" color="primary" type='submit'>
             Modifier
           </Button>

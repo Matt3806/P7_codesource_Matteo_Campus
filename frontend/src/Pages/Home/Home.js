@@ -19,7 +19,11 @@ function Home() {
   const getAllPost = 'http://localhost:8080/api/post/'
   const authHeader = useAuthHeader()
   const config = {
-    headers: { authorization: authHeader() }
+    headers: { 
+      authorization: authHeader() ,
+      "content-type" : "multipart/form-data",
+      Accept: FormData
+    }
   }
   //states
   const [post, setPost] = useState([])
