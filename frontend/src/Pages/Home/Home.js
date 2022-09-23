@@ -2,7 +2,7 @@
 import './Home.scss'
 import React, { useEffect, useState } from 'react'
 import Like from '../../Components/Like/Like'
-import Modify from '../../Components/Modify/Modify'
+import UpdatePost from '../../Components/UpdatePost/UpdatePost'
 import Wave from '../../Components/Wave/Wave';
 import FromUser from '../../Components/FromUser/FromUser';
 import Createpost from '../../Components/CreatePost/Createpost';
@@ -40,7 +40,8 @@ function Home() {
    .then((res)=>{setPost(res.data)})
    .catch((err) => { console.log(err)})
   }
-  
+
+  // affichage d'un message en cas d'absence de post
   const noPost = ()=> {
     if(post.length === 0){
       return (
@@ -96,7 +97,7 @@ function Home() {
                 <Like props={item} fetch={ () => fetchPosts()}  config ={config}/>
                 <FromUser props={item} config ={config}/>
                 <Typography sx={{margin:'10px' ,alignSelf:'start',}} color="text.secondary" >le : {item.createdAt.substring(0, 10)} </Typography>
-                <Modify props={item} fetch={ () => fetchPosts()}  config ={config}/>
+                <UpdatePost props={item} fetch={ () => fetchPosts()}  config ={config}/>
               </CardActions>
             </Card>
         ))}

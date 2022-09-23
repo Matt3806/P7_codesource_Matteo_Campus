@@ -1,11 +1,13 @@
-//import interne
+//imports internes
 import './Notfound.scss'
 import React from 'react'
-//import mui
+//imports externes
+import { useNavigate } from 'react-router-dom';
+//imports mui
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import HomeIcon from '@mui/icons-material/Home';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+
 
 function Notfound() {
   const navigate = useNavigate()

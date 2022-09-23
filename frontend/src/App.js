@@ -3,7 +3,6 @@ import { AuthProvider ,RequireAuth} from 'react-auth-kit'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './Pages/Home/Home'
-import Createpost from './Components/CreatePost/Createpost';
 import Profile from './Pages/Profile/Profile';
 import Login from './Pages/Login/Login'
 import Signup from'./Pages/Signup/Signup'
@@ -15,10 +14,11 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider authType = {'cookie'}
-              authName={'_auth'}
-              cookieDomain={window.location.hostname}
-              cookieSecure={true}>
+      <AuthProvider 
+        authType = {'cookie'}
+        authName={'_auth'}
+        cookieDomain={window.location.hostname}
+        cookieSecure={true}>
         <Router>
           <Routes>
             <Route path="/signup" element={< Signup/>} />
@@ -29,7 +29,7 @@ function App() {
                 < Home/> 
               </RequireAuth>
             }/>
-            <Route path="/profil" element={
+            <Route path="/profil/:id" element={
               <RequireAuth loginPath={'/login'}>
                 <Navbar/> 
                 <Profile/>

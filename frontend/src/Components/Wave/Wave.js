@@ -1,3 +1,4 @@
+//imports internes
 import './Wave.scss'
 import React from 'react'
 

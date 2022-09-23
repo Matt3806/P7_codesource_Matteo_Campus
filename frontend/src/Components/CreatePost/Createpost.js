@@ -1,17 +1,26 @@
+//imports internes
 import './Createpost.scss'
 import React from 'react'
-import { Box, Button, Typography , Drawer, TextField, Input} from '@mui/material'
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import { useState } from 'react'
-import EditIcon from '@mui/icons-material/Edit';
+//imports externes
 import {useForm} from 'react-hook-form'
 import axios from 'axios'
+//imports mui
+import { Box, Button, Typography , Drawer, TextField, Input} from '@mui/material'
+import AddBoxIcon from '@mui/icons-material/AddBox'
+import EditIcon from '@mui/icons-material/Edit'
+
 
 
 function Createpost(props) {
-  const {register , handleSubmit} = useForm()
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
+  //cosntantes
+  const {register , handleSubmit} = useForm() //permet de recupérer l'objet présent dans le form
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false) // gestion de l'ouverture du drawer
+
+  //fonctions
+
+  //création du post
   const onSubmit = (data)=>{
     const baseUrl = 'http://localhost:8080/api/post/'
 

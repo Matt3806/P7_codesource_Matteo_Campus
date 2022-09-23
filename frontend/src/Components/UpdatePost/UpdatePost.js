@@ -1,5 +1,5 @@
 //imports internes
-import './Modify.scss'
+import './UpdatePost.scss'
 import React, { useState } from 'react'
 //imports externes
 import axios from 'axios';
@@ -24,7 +24,7 @@ const style = {
   flexDirection:'column', 
 };
 
-function Modify(props) {
+function UpdatePost(props) {
   //constantes
   const baseUrl = `http://localhost:8080/api/post/${props.props.id}`
   const authUser = useAuthUser()
@@ -39,8 +39,8 @@ function Modify(props) {
   const handleOpen = () => setOpen(true); //ouvre la modal
   const handleClose = () => setOpen(false); //ferme la modal
 
-  //affiche le bouton pour trigger la modal si admin ou user ayabt créé le post
-  const modifypost = (item) =>{
+  //affiche le bouton pour trigger la modal si admin ou user ayant créé le post
+  const allowed = (item) =>{
       if(authUser().admin || authUser().id === item.userId){
         return(
         <div className='containerHome__card__modify'>
@@ -54,26 +54,30 @@ function Modify(props) {
   //met à jour le post avec les éléments renseignés dans les inputs
   const updatePost = (e) => {
     e.preventDefault()
-    const obj = {
-      title : title,
-      content : content,
-      image: picture  
+    if (window.confirm('Modifier votre post ?')=== true){
+      const obj = {
+        title : title,
+        content : content,
+        image: picture  
+      }
+      axios.put(baseUrl,obj,props.config)
+      .then((res) => {props.fetch() ; handleClose()})
+      .catch((err)=>{console.log(err)})
     }
-    axios.put(baseUrl,obj,props.config)
-    .then((res) => {props.fetch() ; handleClose()})
-    .catch((err)=>{console.log(err)})
   }
 
   //supprime le post
   const deletePost = () => {
+    if (window.confirm('ATTENTION, vous allez supprimer votre post')=== true){
     axios.delete(baseUrl,props.config)
     .then((res) => {props.fetch() ; handleClose()})
     .catch((err)=>{console.log(err)})
+    }
   }
 
   return (
     <>
-    {modifypost(props.props)}
+    {allowed(props.props)}
     <Modal
         open={open}
         onClose={handleClose}
@@ -122,4 +126,4 @@ function Modify(props) {
   )
 }
 
-export default Modify
+export default UpdatePost

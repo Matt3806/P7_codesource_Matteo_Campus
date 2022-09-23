@@ -1,18 +1,29 @@
+//importrs internes
 import React from 'react'
+import { useState } from 'react'
+import './Drawer.scss'
+//imports externes
+import { useSignOut } from 'react-auth-kit'
+import { useAuthUser } from 'react-auth-kit'
+import { useNavigate } from 'react-router-dom'
+//imports mui
 import {Drawer, Box, Typography, IconButton, Button} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import LanguageIcon from '@mui/icons-material/Language';
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import LogoutIcon from '@mui/icons-material/Logout';
-import { useSignOut } from 'react-auth-kit'
-import './Drawer.scss'
+import LanguageIcon from '@mui/icons-material/Language'
+import LogoutIcon from '@mui/icons-material/Logout'
+
 
 
 function MuiDrawer() {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
+    //constantes
     const navigate = useNavigate()
     const signOut = useSignOut()
+    const authUser = useAuthUser()
+
+    //states
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false) //gère l'ouverture du drawer
+
   return (
     <>
     <IconButton 
@@ -42,7 +53,7 @@ function MuiDrawer() {
                 GROUPOMANIA
             </Typography>
             <Button color='inherit' sx ={{margin:'25px'}}onClick={ e => {navigate('/') ; setIsDrawerOpen(false)}}>Accueil</Button>
-            <Button color='inherit'sx ={{margin:'25px'}}onClick={ e => {navigate('/profil'); setIsDrawerOpen(false)}}>Profil</Button>
+            <Button color='inherit'sx ={{margin:'25px'}}onClick={ e => {navigate(`/profil/${authUser().id}`); setIsDrawerOpen(false)}}>Profil</Button>
             <Button color='error' onClick={e => {signOut()}}>
                 <LogoutIcon/>
             </Button>       
