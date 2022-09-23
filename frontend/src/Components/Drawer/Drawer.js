@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useSignOut } from 'react-auth-kit'
+import './Drawer.scss'
 
 
 function MuiDrawer() {
@@ -41,7 +42,6 @@ function MuiDrawer() {
                 GROUPOMANIA
             </Typography>
             <Button color='inherit' sx ={{margin:'25px'}}onClick={ e => {navigate('/') ; setIsDrawerOpen(false)}}>Accueil</Button>
-            <Button color='inherit'sx ={{margin:'25px'}}onClick={ e => {navigate('/createpost') ; setIsDrawerOpen(false)}}>Créer un post</Button>
             <Button color='inherit'sx ={{margin:'25px'}}onClick={ e => {navigate('/profil'); setIsDrawerOpen(false)}}>Profil</Button>
             <Button color='error' onClick={e => {signOut()}}>
                 <LogoutIcon/>

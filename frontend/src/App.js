@@ -3,7 +3,7 @@ import { AuthProvider ,RequireAuth} from 'react-auth-kit'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './Pages/Home/Home'
-import Createpost from './Pages/CreatePost/Createpost';
+import Createpost from './Components/CreatePost/Createpost';
 import Profile from './Pages/Profile/Profile';
 import Login from './Pages/Login/Login'
 import Signup from'./Pages/Signup/Signup'
@@ -27,12 +27,6 @@ function App() {
               <RequireAuth loginPath={'/login'}>
                 <Navbar/> 
                 < Home/> 
-              </RequireAuth>
-            }/>
-            <Route path="/createpost" element={
-              <RequireAuth loginPath={'/login'}>
-                <Navbar/> 
-                <Createpost/>
               </RequireAuth>
             }/>
             <Route path="/profil" element={

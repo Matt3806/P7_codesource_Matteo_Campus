@@ -6,7 +6,7 @@ import axios from 'axios'
 //imports mui
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import { Checkbox } from '@mui/material'
+import { Checkbox, Typography } from '@mui/material'
 import { useAuthUser } from 'react-auth-kit';
 
 
@@ -35,9 +35,9 @@ function Like(props) {
   }
 
   return (
-    <div className='containerHome__card__likeSystem'>
+  <div className='containerHome__card__likeSystem'>
     <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={isliked} onChange={likeDislike}/>   
-    <p>{props.props.users.length}</p>
+    <Typography>{props.props.users.length}</Typography>
   </div>    
   )
 }

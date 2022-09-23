@@ -13,7 +13,7 @@ function Navbar() {
   const navigate = useNavigate()
   const signOut = useSignOut()
   return (
-  <AppBar position='sticky'>
+  <AppBar position='sticky' >
     <Toolbar>
       <IconButton size='large' edge='start' color='inherit' aria-label='logo' onClick={ e => {navigate('/')}}>
         <LanguageIcon  />
@@ -27,7 +27,6 @@ function Navbar() {
           md:'scale(1)',
         }}} >
         <Button color='inherit'onClick={ e => {navigate('/')}}>Accueil</Button>
-        <Button color='inherit'onClick={ e => {navigate('/createpost')}}>Créer un post</Button>
         <Button color='inherit'onClick={ e => {navigate('/profil')}}>Profil</Button>
         <IconButton color='inherit' size='large' edge='start' aria-label='logo' onClick={e => {signOut()}}>
           <LogoutIcon/>

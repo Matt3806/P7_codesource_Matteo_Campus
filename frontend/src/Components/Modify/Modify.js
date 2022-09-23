@@ -24,7 +24,7 @@ const style = {
   flexDirection:'column', 
 };
 
-function Modify( props) {
+function Modify(props) {
   //constantes
   const baseUrl = `http://localhost:8080/api/post/${props.props.id}`
   const authUser = useAuthUser()
