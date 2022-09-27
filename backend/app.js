@@ -1,17 +1,18 @@
 require('dotenv').config()
 const express = require('express')
+const helmet = require("helmet")
 const app = express()
 const path = require('path')
 const { Sequelize } = require('sequelize')
 
-
+app.use(helmet())
 
 const postRoutes = require('./routes/post')
 const userRoutes = require('./routes/user')
 const likeRoutes = require('./routes/like')
 
 
-const sequelize = new Sequelize('groupomania_development', 'root', process.env.dbSecret, {
+const sequelize = new Sequelize('database_development', 'root', process.env.dbSecret, {
     host: 'localhost',
     dialect: 'mysql'
   });
