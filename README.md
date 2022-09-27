@@ -92,7 +92,7 @@ npm start
 * [dotenv](https://github.com/motdotla/dotenv#readme) - gestion de variables d'environnement 
 * [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme) - gestionnaire de token
 * [multer](https://github.com/expressjs/multer#readme) - middleware de gestion des multipart/formdata
-* [passwordvalidator] (https://github.com/tarunbatra/password-validator#readme) - middleware de validation de mot de passe
+* [passwordvalidator](https://github.com/tarunbatra/password-validator#readme) - middleware de validation de mot de passe
 * [helmet](https://helmetjs.github.io/) - protection http
 
 
