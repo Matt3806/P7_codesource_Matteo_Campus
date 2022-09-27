@@ -49,9 +49,14 @@ npm install -g sequelize-cli
 
 ```
 node server
+```
+
 ou
+
+```
 nodemon server
 ```
+
 (si un problème survient il se peut que ce soit car nodemon n'est pas installé en Global où que l'invit de commande ne soit pas lancé avec suffisament de permission -> lancer l'invit de commande en mode admin)
 
 en cas de réussite la console affiche le message suivant :
@@ -74,21 +79,21 @@ npm start
 -- frontend 
 * [ReactJs](https://fr.reactjs.org/) - framework javaScript frontend
 * [MaterialUi](https://mui.com/) - librairie de composant react
-* [React-atuh-kit] (https://authkit.arkadip.dev/v2.1.4/) - librairie d'authentification react
-* [useForm] (https://react-hook-form.com/api/useform/) - librairie de gestion de formulaire react
-* [React-router-dom] (https://reactrouter.com/en/main) - router côté client
-* [Jwt-decode] (https://www.npmjs.com/package/jwt-decode) - decodeur de token
-* [Axios] (https://axios-http.com/fr/docs/intro) - client HTTP 
+* [React-atuh-kit](https://authkit.arkadip.dev/v2.1.4/) - librairie d'authentification react
+* [useForm](https://react-hook-form.com/api/useform/) - librairie de gestion de formulaire react
+* [React-router-dom](https://reactrouter.com/en/main) - router côté client
+* [Jwt-decode](https://www.npmjs.com/package/jwt-decode) - decodeur de token
+* [Axios](https://axios-http.com/fr/docs/intro) - client HTTP 
 
 -- backend
 * [ExpressJs](https://expressjs.com/fr/) - framework javaScript backend
 * [Sequelize](https://sequelize.org/) - Orm mysql
 * [bcrypt](https://www.bcrypt.fr/) - hash
-* [dotenv] (https://github.com/motdotla/dotenv#readme) - gestion de variables d'environnement 
-* [jsonwebtoken] (https://github.com/auth0/node-jsonwebtoken#readme) - gestionnaire de token
-* [multer] (https://github.com/expressjs/multer#readme) - middleware de gestion des multipart/formdata
+* [dotenv](https://github.com/motdotla/dotenv#readme) - gestion de variables d'environnement 
+* [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme) - gestionnaire de token
+* [multer](https://github.com/expressjs/multer#readme) - middleware de gestion des multipart/formdata
 * [passwordvalidator] (https://github.com/tarunbatra/password-validator#readme) - middleware de validation de mot de passe
-* [helmet] (https://helmetjs.github.io/) - protection http
+* [helmet](https://helmetjs.github.io/) - protection http
 
 
 ## Auteur
