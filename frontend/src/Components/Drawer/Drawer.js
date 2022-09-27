@@ -33,6 +33,7 @@ function MuiDrawer() {
     aria-label= 'logo'
     onClick={()=> setIsDrawerOpen(true)}
     sx={{
+        paddingTop:'8px',
         position:'absolute',
         top:'10px',
         right:'15px',
@@ -48,7 +49,7 @@ function MuiDrawer() {
         open={isDrawerOpen}
         onClose={()=> setIsDrawerOpen(false)}>
         <Box p={2} width ='250px' textAlign='center' role= 'presentation' sx={{display:'flex',flexDirection:'column'}} >
-            <Typography  color='primary' variant ='h6' component= 'div' sx={{display:'flex', justifyContent:'center', alignItems:'center'}} >
+            <Typography  color='#FD2D01' variant ='h6' component= 'div' sx={{display:'flex', justifyContent:'center', alignItems:'center'}} >
                 <LanguageIcon size='large' edge='start' color='inherit' aria-label='logo' sx={{margin:'10px'}} />
                 GROUPOMANIA
             </Typography>

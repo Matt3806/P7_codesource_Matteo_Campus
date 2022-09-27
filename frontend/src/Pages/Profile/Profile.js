@@ -14,7 +14,7 @@ import UpdateUser from '../../Components/UpdateUser/UpdateUser'
 
 function Profile() {
   //constantes
-  const defaultPicture = 'https://cdn.pixabay.com/photo/2020/05/17/20/21/cat-5183427_960_720.jpg'
+  const defaultPicture = 'https://cdn.pixabay.com/photo/2015/01/09/11/09/meeting-594091_960_720.jpg'
   const authHeader = useAuthHeader()
   const authUser = useAuthUser()
   const params = useParams()
@@ -57,7 +57,7 @@ function Profile() {
       height:'100%',
     }}>
       <Box component = 'img'
-        src= {user.picture ? user.picture : defaultPicture}
+        src= {defaultPicture}
         alt=''
         sx={{
           position:'absolute',
@@ -99,7 +99,6 @@ function Profile() {
         </Typography>
         {allowed()}
       </Box>
-      {console.log(user)}   
     </Box>
   )
 }

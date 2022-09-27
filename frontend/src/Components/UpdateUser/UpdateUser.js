@@ -1,6 +1,6 @@
 //imports internes
 import './UpdateUser.scss'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 //imports externes
 import axios from 'axios';
 //imports mui
@@ -30,9 +30,15 @@ function UpdateUser(props) {
 
     //states
     const [open, setOpen] = useState(false)
-    const [picture, setpicture] = useState(null)
-    const [username, setusername] = useState(props.props.username ? props.props.username : '')
-    const [bio, setbio] = useState(props.props.bio ? props.props.bio : '')
+    const [picture, setpicture] = useState(false)
+    const [username, setusername] = useState('')
+    const [bio, setbio] = useState('')
+
+    //effects
+    useEffect(()=>{
+      setusername(props.props.username ? props.props.username : '')
+      setbio(props.props.bio ? props.props.bio : '')
+    },[username,bio, props])
 
     //fonctions
     const handleOpen = () => setOpen(true); //ouvre la modal
@@ -42,11 +48,11 @@ function UpdateUser(props) {
     const updateUser = (e) => {
         e.preventDefault()
         if (window.confirm('Modifier votre post ?') === true){
-          const obj = {
+          const obj = picture ? {
             username : username,
             bio : bio,
             image: picture  
-          }
+          } : {username:username, bio:bio}
           axios.put(baseUrl,obj,props.config)
           .then((res) => {props.fetch() ; handleClose()})
           .catch((err)=>{console.log(err)})

@@ -5,7 +5,7 @@ const app = express()
 const path = require('path')
 const { Sequelize } = require('sequelize')
 
-app.use(helmet())
+app.use(helmet({ crossOriginResourcePolicy: false }))
 
 const postRoutes = require('./routes/post')
 const userRoutes = require('./routes/user')

@@ -33,7 +33,7 @@ function UpdatePost(props) {
   const [open, setOpen] = useState(false);
   const [title, settitle] = useState(props.props.title)
   const [content, setcontent] = useState(props.props.content)
-  const [picture, setpicture] = useState(null)
+  const [picture, setpicture] = useState(false)
 
   //fonctions
   const handleOpen = () => setOpen(true); //ouvre la modal
@@ -54,12 +54,14 @@ function UpdatePost(props) {
   //met à jour le post avec les éléments renseignés dans les inputs
   const updatePost = (e) => {
     e.preventDefault()
-    if (window.confirm('Modifier votre post ?')=== true){
-      const obj = {
+    if (window.confirm('Modifier votre post ?') === true){
+      const obj =  picture ?
+      {
         title : title,
         content : content,
-        image: picture  
-      }
+        image: picture
+      } : { title:title, content:content }
+
       axios.put(baseUrl,obj,props.config)
       .then((res) => {props.fetch() ; handleClose()})
       .catch((err)=>{console.log(err)})

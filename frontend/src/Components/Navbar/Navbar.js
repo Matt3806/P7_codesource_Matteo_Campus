@@ -22,8 +22,8 @@ function Navbar() {
   const authUser = useAuthUser()
   
   return (
-  <AppBar position='sticky' >
-    <Toolbar>
+  <AppBar position='sticky' sx= {{backgroundColor:'#FD2D01'}}>
+    <Toolbar >
       <IconButton size='large' edge='start' color='inherit' aria-label='logo' onClick={ e => {navigate('/')}}>
         <LanguageIcon  />
       </IconButton>
