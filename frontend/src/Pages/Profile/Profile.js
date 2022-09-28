@@ -49,7 +49,7 @@ function Profile() {
 
   //effects
   useEffect (()=>{
-    fetchUser()     
+    fetchUser()
   },[])
 
   return (

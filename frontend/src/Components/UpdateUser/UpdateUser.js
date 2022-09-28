@@ -83,7 +83,7 @@ function UpdateUser(props) {
             single='true' 
             accept="image/*"
             filename='image'
-            onChange={e => {setpicture(e.target.files[0]) }}
+            onChange={e => {setpicture(e.target.files[0])}}
           />
           <TextField
             id="outlined-basic"

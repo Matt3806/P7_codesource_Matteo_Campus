@@ -64,7 +64,7 @@ exports.getOnePost = (req, res)=>{
 //mis à jour d'un post par l'utlisateur qui l'a créé ou admin
 exports.updatePost = (req, res)=>{
     console.log('updatePost')
-
+    console.log('req.file:', req.file)
     const userId = req.auth.userId
     const isadmin = req.auth.isadmin
     const id = parseInt(req.params.id)
@@ -76,7 +76,7 @@ exports.updatePost = (req, res)=>{
         :{ ...req.body}
     const fieldsAllowed = { fields: ['picture', 'title', 'content'] }
     const contentToUpdate = (post) => {
-        if(!post.picture){
+        if(!req.file){
             post.update({
                 ...body
             }, fieldsAllowed)

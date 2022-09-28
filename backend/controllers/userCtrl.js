@@ -97,7 +97,7 @@ exports.updateUser = (req, res)=>{
     const fieldsAllowed = { fields: ['username', 'bio', 'picture'] }
 
     const contentToUpdate = (user) => {
-        if(!user.picture){
+        if(!req.file){
             user.update({
                 ...body
             },  fieldsAllowed)
