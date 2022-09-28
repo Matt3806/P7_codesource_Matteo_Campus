@@ -29,13 +29,13 @@ npm install
 
 3) dans le dossier backend renomer les fichiers config-exemple, images-exemple et .env-exemple en supprimant "-exemple"
 
-4) dans Mysql workbench créer un nouveau schéma et l'appeler database_development (cf. config)
-
-5) à partir du fichier backend migrer la base de donnée
+4) à partir du fichier backend créer la base de donnée puis la migrer
 
 ```
+sequelize db:create
 sequelize db:migrate
 ```
+
 
 (si un problème survient il se peut que ce soit car Mysql2, sequelize ou sequelize-cli n'est pas installé en Global)
 
@@ -45,7 +45,7 @@ npm install -g sequelize
 npm install -g sequelize-cli
 ```
 
-6) lancer le server depuis le backend 
+5) lancer le server depuis le backend 
 
 ```
 node server
@@ -67,14 +67,14 @@ Executing (default): SELECT 1+1 AS result
 database connected
 ```
 
-7) lancer le serveur de developpement front end
+6) lancer le serveur de developpement front end
 
 ```
 npm start
 ```
 
 
-## Built With
+## Technos & dépendances
 
 -- frontend 
 * [ReactJs](https://fr.reactjs.org/) - framework javaScript frontend

@@ -13,6 +13,7 @@ import { Avatar, Box, Typography } from '@mui/material'
 import UpdateUser from '../../Components/UpdateUser/UpdateUser'
 
 function Profile() {
+  
   //constantes
   const defaultPicture = 'https://cdn.pixabay.com/photo/2015/01/09/11/09/meeting-594091_960_720.jpg'
   const authHeader = useAuthHeader()
@@ -39,7 +40,7 @@ function Profile() {
   }
 
   const allowed = () => {
-    if(authUser().admin || authUser().id === userId){
+    if(authUser().admin || authUser().id === parseInt(userId)){
       return(
         <UpdateUser props={user} config ={config} fetch ={()=> fetchUser()}/>
       )

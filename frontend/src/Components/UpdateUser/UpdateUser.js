@@ -1,6 +1,6 @@
 //imports internes
 import './UpdateUser.scss'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 //imports externes
 import axios from 'axios';
 //imports mui
@@ -31,14 +31,8 @@ function UpdateUser(props) {
     //states
     const [open, setOpen] = useState(false)
     const [picture, setpicture] = useState(false)
-    const [username, setusername] = useState('')
-    const [bio, setbio] = useState('')
-
-    //effects
-    useEffect(()=>{
-      setusername(props.props.username ? props.props.username : '')
-      setbio(props.props.bio ? props.props.bio : '')
-    },[username,bio, props])
+    const [username, setusername] = useState(props.props.username)
+    const [bio, setbio] = useState(props.props.bio)
 
     //fonctions
     const handleOpen = () => setOpen(true); //ouvre la modal
