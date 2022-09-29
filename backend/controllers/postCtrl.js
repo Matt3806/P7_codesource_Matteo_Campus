@@ -64,7 +64,7 @@ exports.getOnePost = (req, res)=>{
 //mis à jour d'un post par l'utlisateur qui l'a créé ou admin
 exports.updatePost = (req, res)=>{
     console.log('updatePost')
-    console.log('req.file:', req.file)
+ 
     const userId = req.auth.userId
     const isadmin = req.auth.isadmin
     const id = parseInt(req.params.id)
@@ -83,14 +83,22 @@ exports.updatePost = (req, res)=>{
             .then(() => res.status(201).json({ msg: 'post updated' }))
             .catch(error => res.status(400).json({ error }))
         } else {
-            const filename = post.picture.split('/images/')[1]
-            fs.unlink(`images/${filename}`, () => {
+            if(!post.picture){
                 post.update({
                     ...body
                 },fieldsAllowed)
                 .then(() => res.status(201).json({ msg: 'post updated' }))
                 .catch(error => res.status(400).json({ error }))
-            })
+            } else{
+                const filename = post.picture.split('/images/')[1]
+                fs.unlink(`images/${filename}`, () => {
+                    post.update({
+                        ...body
+                    },fieldsAllowed)
+                    .then(() => res.status(201).json({ msg: 'post updated' }))
+                    .catch(error => res.status(400).json({ error }))
+                })
+            }
         }
     }
     const postFound = models.post.findByPk(id)

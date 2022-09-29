@@ -41,7 +41,7 @@ function UpdateUser(props) {
     //modification du profil
     const updateUser = (e) => {
         e.preventDefault()
-        if (window.confirm('Modifier votre post ?') === true){
+        if (window.confirm('Modifier votre profil ?') === true){
           const obj = picture ? {
             username : username,
             bio : bio,

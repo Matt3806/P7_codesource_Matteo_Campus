@@ -84,7 +84,6 @@ exports.getAllUser = (req, res) => {
 //mis à jour du profil par l'utilisateur connecté ou admin
 exports.updateUser = (req, res)=>{
     console.log('updateUser')
-
     const userId = req.auth.userId
     const isadmin = req.auth.isadmin
     const id = parseInt(req.params.id)
@@ -104,27 +103,34 @@ exports.updateUser = (req, res)=>{
             .then(() => res.status(201).json({ msg: 'user updated' }))
             .catch(error => res.status(400).json({ error }))
         } else {
-            const filename = user.picture.split('/images/')[1]
-            fs.unlink(`images/${filename}`, () => {
+            if(!user.picture){
                 user.update({
                     ...body
                 }, fieldsAllowed)
                 .then(() => res.status(201).json({ msg: 'user updated' }))
                 .catch(error => res.status(400).json({ error }))
-            })
+            } else {
+                const filename = user.picture.split('/images/')[1]
+                fs.unlink(`images/${filename}`, () => {
+                    user.update({
+                        ...body
+                    }, fieldsAllowed)
+                    .then(() => res.status(201).json({ msg: 'user updated' }))
+                    .catch(error => res.status(400).json({ error }))
+                })
+            }
         }
     }
     const userFound = models.user.findByPk(id,{
         attributes: [ 'id', 'username', 'bio', 'picture'] 
     })
     .then((user)=>{
-        console.log(user)
         if (!user) return res.status(404).json({ msg: 'not found' })
         if(isadmin === true || userId === id)
             return contentToUpdate(user)
         res.status(401).json({msg:'not allowed'})    
     })
-    .catch(error => res.status(404).json({ error }))
+    .catch(error => {res.status(404).json({ error })})
 }
 
 //suppression par l'utilisateur connecté ou admin
